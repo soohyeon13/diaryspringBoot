@@ -1,4 +1,4 @@
-package com.example.diaryspring;
+package com.example.diaryspring.daycalendar;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

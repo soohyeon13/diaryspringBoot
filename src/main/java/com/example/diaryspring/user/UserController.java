@@ -1,4 +1,4 @@
-package com.example.diaryspring;
+package com.example.diaryspring.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

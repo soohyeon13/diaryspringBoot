@@ -1,4 +1,4 @@
-package com.example.diaryspring;
+package com.example.diaryspring.user;
 
 import lombok.Data;
 import lombok.Getter;

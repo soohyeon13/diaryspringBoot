@@ -1,4 +1,4 @@
-package com.example.diaryspring;
+package com.example.diaryspring.daycalendar;
 
 import lombok.Generated;
 import lombok.Getter;
@@ -17,6 +17,9 @@ public class DayCalendar {
 
     @Column(name = "username")
     String username;
+
+    @Column(name = "today")
+    String today;
 
     @Column(name = "title")
     String title;
