@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface DayCalendarRepo extends JpaRepository<DayCalendar,Integer> {
-//    public List<User> findAllByUserId(Integer user_id);
+    List<DayCalendar> findAllByUserId(Integer user_id);
 }

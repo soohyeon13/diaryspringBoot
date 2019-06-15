@@ -18,9 +18,6 @@ public class DayCalendar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-//    @Column(name = "user_id")
-//    Integer user_id;
-
     @Column(name = "username")
     String username;
 
@@ -39,11 +36,7 @@ public class DayCalendar {
     @Column(name = "event_start")
     String eventStart;
 
-//    @ManyToMany
-//    @JoinTable(name = "calendar_user",
-//            joinColumns = @JoinColumn(name = "calendar_id"),
-//            inverseJoinColumns = @JoinColumn (name= "user_id"))
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class , fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

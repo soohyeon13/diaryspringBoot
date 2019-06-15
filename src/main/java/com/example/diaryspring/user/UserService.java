@@ -13,4 +13,6 @@ public interface UserService {
     void withdraw(String token);
 
     List<User> userList();
+
+    User findByid(Integer id);
 }

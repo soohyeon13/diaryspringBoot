@@ -16,8 +16,8 @@ public class DayCalendarService {
         return dayCalendarRepo.findAll();
     }
 
-    public Optional<DayCalendar> findById(Integer id) {
-        return dayCalendarRepo.findById(id);
+    public Optional<DayCalendar> findByUserId(Integer user_id) {
+        return dayCalendarRepo.findById(user_id);
     }
 
     public DayCalendar save(DayCalendar dayCalendar) {

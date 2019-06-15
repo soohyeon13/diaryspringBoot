@@ -13,9 +13,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class User {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer user_id;
+    Integer id;
     @Column(name = "username")
     String username;
     @Column(name = "userpaassword")
@@ -23,6 +23,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User[id='%d',username='%s']",user_id,username);
+        return String.format("User[id='%d',username='%s']",id,username);
     }
 }
