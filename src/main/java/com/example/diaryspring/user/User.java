@@ -1,21 +1,28 @@
 package com.example.diaryspring.user;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity(name="userinfo")
+@Entity
 @Getter
 @Setter
+@Table(name = "userinfo")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Integer user_id;
     @Column(name = "username")
     String username;
     @Column(name = "userpaassword")
     String userpassword;
+
+    @Override
+    public String toString() {
+        return String.format("User[id='%d',username='%s']",user_id,username);
+    }
 }
