@@ -17,7 +17,7 @@ public class DayCalendarController {
 
     @GetMapping("/")
     public String list() {
-        return "daycalendars";
+        return "daycalendar";
     }
 //    private final DayCalendarRepo dayCalendarRepo;
 //

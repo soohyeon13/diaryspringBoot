@@ -1,10 +1,13 @@
 package com.example.diaryspring.daycalendar;
 
+import com.example.diaryspring.user.User;
 import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "daycalendar")
 @Getter
@@ -14,6 +17,9 @@ public class DayCalendar {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
+//    @Column(name = "user_id")
+//    Integer user_id;
 
     @Column(name = "username")
     String username;
@@ -33,8 +39,12 @@ public class DayCalendar {
     @Column(name = "event_start")
     String eventStart;
 
-    @Column(name = "event_end")
-    String eventEnd;
-
+//    @ManyToMany
+//    @JoinTable(name = "calendar_user",
+//            joinColumns = @JoinColumn(name = "calendar_id"),
+//            inverseJoinColumns = @JoinColumn (name= "user_id"))
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
