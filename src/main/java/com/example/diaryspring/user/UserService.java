@@ -1,5 +1,6 @@
 package com.example.diaryspring.user;
 
+
 import java.util.List;
 
 public interface UserService {
@@ -10,4 +11,6 @@ public interface UserService {
     User updatepassword(String token,String password);
 
     void withdraw(String token);
+
+    List<User> userList();
 }

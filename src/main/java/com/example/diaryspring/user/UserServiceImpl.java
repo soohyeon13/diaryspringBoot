@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -46,6 +48,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void withdraw(String token) {
+        User user = this.authentication(token);
+        userRepository.delete(user);
+    }
 
+    @Override
+    public List<User> userList() {
+        return userRepository.findAll();
     }
 }

@@ -25,7 +25,13 @@ public class UserController {
         return userService.join(username,userpassword);
     }
 
-    @GetMapping(value = "/me",consumes =MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/list")
+    public List<User> list() {
+        List<User> userList = userService.userList();
+        return userList;
+    }
+
+    @GetMapping(value = "/me")
     public User getMe(@RequestHeader String authorization) {
         return userService.authentication(authorization);
     }
@@ -33,6 +39,11 @@ public class UserController {
     @PutMapping(value = "/me")
     public User updatePassword(@RequestHeader String authorization, @RequestParam String userpassword) {
         return userService.updatepassword(authorization,userpassword);
+    }
+
+    @DeleteMapping
+    public void withdraw(@RequestHeader String authorization) {
+        userService.withdraw(authorization);
     }
 
 //    @PostMapping(path="/add",consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
