@@ -1,31 +1,23 @@
 package com.example.diaryspring.daycalendar;
 
 
+import com.example.diaryspring.payload.DayCalendarPayLoad;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class DayCalendarService {
-    private final DayCalendarRepo dayCalendarRepo;
+public interface DayCalendarService {
 
-    public List<DayCalendar> findAll() {
-        return dayCalendarRepo.findAll();
-    }
+    List<DayCalendar> findAllByUserId(Integer user_id);
 
-    public Optional<DayCalendar> findByUserId(Integer user_id) {
-        return dayCalendarRepo.findById(user_id);
-    }
+    DayCalendar updateCalendar(DayCalendar dayCalendar);
 
-    public DayCalendar save(DayCalendar dayCalendar) {
-        return dayCalendarRepo.save(dayCalendar);
-    }
+    void deleteCalendar(Integer id);
 
-    public void deleteById(Integer id) {
-        dayCalendarRepo.deleteById(id);
-    }
+    DayCalendar addCalendar(DayCalendarPayLoad dayCalendarPayLoad);
+
+    List<DayCalendar> calendarList();
 
 }

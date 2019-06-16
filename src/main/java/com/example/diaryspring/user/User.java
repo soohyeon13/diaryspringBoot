@@ -21,6 +21,11 @@ public class User {
     @Column(name = "userpaassword")
     String userpassword;
 
+    public User(String username, String userpassword) {
+        this.username = username;
+        this.userpassword = userpassword;
+    }
+
     @Override
     public String toString() {
         return String.format("User[id='%d',username='%s']",id,username);
