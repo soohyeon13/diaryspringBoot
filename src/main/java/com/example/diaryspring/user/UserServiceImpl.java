@@ -1,5 +1,7 @@
 package com.example.diaryspring.user;
 
+import com.example.diaryspring.user.exception.AlreadyExistsException;
+import com.example.diaryspring.user.exception.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
@@ -18,25 +20,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User join(String username, String userpassword) {
+        User user = new User();
+        if (user != null) {
+            throw new AlreadyExistsException("Duplicate username");
+        }
         return userRepository.save(User.builder().username(username).userpassword(userpassword).build());
     }
 
     @Override
     public User authentication(String token) {
-        String[] split = token.split(" ");
-        String type = split[0];
-        String credential =split[1];
+        try {
+            String[] split = token.split(" ");
+            String type = split[0];
+            String credential = split[1];
 
-        User user  =null;
+            if ("Basic".equalsIgnoreCase(type)) {
+                String decoded = new String(Base64Utils.decodeFromString(credential));
+                String[] usernameAndPassword = decoded.split(":");
 
-        if ("Basic".equalsIgnoreCase(type)) {
-            String decoded = new String(Base64Utils.decodeFromString(credential));
-            String[] usernameAndUserpassword = decoded.split(":");
+                User user = userRepository.findByusernameAnduserpassword(usernameAndPassword[0], usernameAndPassword[1]);
+                if (user == null) {
+                    throw new UnauthorizedException("Invalid credentials");
+                } else {
+                    return user;
+                }
 
-            user = userRepository.findByusernameAnduserpassword(usernameAndUserpassword[0],
-                    usernameAndUserpassword[1]);
+            } else {
+                throw new UnauthorizedException("Unsupported type: " + type);
+
+            }
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException ex) {
+            throw new UnauthorizedException("Invalid credentials");
         }
-        return user;
     }
 
     @Override
