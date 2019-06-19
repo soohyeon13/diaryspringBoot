@@ -1,9 +1,7 @@
 package com.example.diaryspring.daycalendar;
 
 
-import com.example.diaryspring.payload.DayCalendarPayLoad;
-import com.example.diaryspring.user.UserService;
-import lombok.RequiredArgsConstructor;
+import com.example.diaryspring.dto.DayCalendarDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,8 +21,8 @@ public class DayCalendarController {
     }
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public DayCalendar addCalendar(@RequestBody DayCalendarPayLoad dayCalendarPayLoad) {
-        return dayCalendarService.addCalendar(dayCalendarPayLoad);
+    public DayCalendar addCalendar(@RequestBody DayCalendarDto dayCalendarDto) {
+        return dayCalendarService.addCalendar(dayCalendarDto);
     }
 
     @GetMapping(value = "/list")

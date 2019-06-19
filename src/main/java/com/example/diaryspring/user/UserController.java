@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @GetMapping(value = "/creat")
     public User create(@RequestParam String username,String userpassword) {
         return userService.join(username,userpassword);
     }

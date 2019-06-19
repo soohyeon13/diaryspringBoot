@@ -1,12 +1,9 @@
 package com.example.diaryspring.daycalendar;
 
 
-import com.example.diaryspring.payload.DayCalendarPayLoad;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.diaryspring.dto.DayCalendarDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface DayCalendarService {
 
@@ -16,7 +13,7 @@ public interface DayCalendarService {
 
     void deleteCalendar(Integer id);
 
-    DayCalendar addCalendar(DayCalendarPayLoad dayCalendarPayLoad);
+    DayCalendar addCalendar(DayCalendarDto dayCalendarDto);
 
     List<DayCalendar> calendarList();
 

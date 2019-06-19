@@ -1,9 +1,8 @@
 package com.example.diaryspring.daycalendar;
 
-import com.example.diaryspring.payload.DayCalendarPayLoad;
+import com.example.diaryspring.dto.DayCalendarDto;
 import com.example.diaryspring.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,9 +31,9 @@ public class DayCalendarServiceImpl implements DayCalendarService {
     }
 
     @Override
-    public DayCalendar addCalendar(DayCalendarPayLoad dayCalendarPayLoad) {
-        DayCalendar dayCalendar = dayCalendarPayLoad.getDayCalendar();
-        dayCalendar.setUser(userService.findByid(dayCalendarPayLoad.getUser_id()));
+    public DayCalendar addCalendar(DayCalendarDto dayCalendarDto) {
+        DayCalendar dayCalendar = dayCalendarDto.getDayCalendar();
+        dayCalendar.setUser(userService.findByid(dayCalendarDto.getUser_id()));
         return dayCalendarRepo.save(dayCalendar);
     }
 
