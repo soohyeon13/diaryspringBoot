@@ -1,12 +1,16 @@
 package com.example.diaryspring.user;
 
 
+import com.example.diaryspring.user.exception.UnauthorizedException;
+
 import java.util.List;
 
 public interface UserService {
     User join(String username, String userpassword);
 
-    User authentication(String token);
+    boolean exists(String token);
+
+    User authentication(String token) throws UnauthorizedException;
 
     User updatepassword(String token,String password);
 

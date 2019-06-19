@@ -1,5 +1,6 @@
 package com.example.diaryspring.user;
 
+import com.example.diaryspring.vo.GetMeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +29,9 @@ public class UserController {
         return userList;
     }
 
-    @GetMapping(value = "/me")
-    public User getMe(@RequestHeader String authorization) {
-        return userService.authentication(authorization);
+    @PostMapping(value = "/me")
+    public GetMeVO getMe(@RequestHeader String Authorization) {
+        return GetMeVO.builder().result(userService.exists(Authorization)).build();
     }
 
     @PutMapping(value = "/me")

@@ -28,7 +28,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User authentication(String token) {
+    public boolean exists(String token) {
+        try {
+            User user = authentication(token);
+            if(user != null) return true;
+        } catch (UnauthorizedException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public User authentication(String token) throws UnauthorizedException {
         try {
             String[] split = token.split(" ");
             String type = split[0];
@@ -39,6 +50,7 @@ public class UserServiceImpl implements UserService {
                 String[] usernameAndPassword = decoded.split(":");
 
                 User user = userRepository.findByusernameAnduserpassword(usernameAndPassword[0], usernameAndPassword[1]);
+//                return userRepository.existsByusernameAnduserpassword(usernameAndPassword[0], usernameAndPassword[1]);
                 if (user == null) {
                     throw new UnauthorizedException("Invalid credentials");
                 } else {
