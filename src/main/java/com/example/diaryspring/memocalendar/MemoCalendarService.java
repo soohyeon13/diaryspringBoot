@@ -7,11 +7,11 @@ import java.util.List;
 public interface MemoCalendarService {
     List<MemoCalendar> findAllByUserId(Integer memo_user_id);
 
-    MemoCalendar updateCalendar(MemoCalendar memoCalendar);
+    MemoCalendar updateMemoCalendar(MemoCalendar memoCalendar);
 
-    void deleteCalendar(Integer id);
+    void deleteMemoCalendar(Integer id);
 
-    MemoCalendar addCalendar(MemoCalendarDto memoCalendarDto);
+    MemoCalendar addMemoCalendar(MemoCalendarDto memoCalendarDto);
 
-    List<MemoCalendar> calendarList();
+    List<MemoCalendar> memoCalendarList();
 }

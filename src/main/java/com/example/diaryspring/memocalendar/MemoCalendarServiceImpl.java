@@ -22,24 +22,24 @@ public class MemoCalendarServiceImpl implements MemoCalendarService {
     }
 
     @Override
-    public MemoCalendar updateCalendar(MemoCalendar memoCalendar) {
+    public MemoCalendar updateMemoCalendar(MemoCalendar memoCalendar) {
         return memoCalendarRepo.save(memoCalendar);
     }
 
     @Override
-    public void deleteCalendar(Integer id) {
+    public void deleteMemoCalendar(Integer id) {
         memoCalendarRepo.deleteById(id);
     }
 
     @Override
-    public MemoCalendar addCalendar(MemoCalendarDto memoCalendarDto) {
+    public MemoCalendar addMemoCalendar(MemoCalendarDto memoCalendarDto) {
         MemoCalendar memoCalendar =memoCalendarDto.getMemoCalendar();
         memoCalendar.setUser(userService.findByid(memoCalendarDto.getMemo_user_id()));
         return memoCalendarRepo.save(memoCalendar);
     }
 
     @Override
-    public List<MemoCalendar> calendarList() {
+    public List<MemoCalendar> memoCalendarList() {
         return memoCalendarRepo.findAll();
     }
 }
