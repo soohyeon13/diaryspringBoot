@@ -31,7 +31,7 @@ public class UserController {
 
     @PostMapping(value = "/me")
     public GetMeVO getMe(@RequestHeader String Authorization) {
-        return GetMeVO.builder().result(userService.exists(Authorization)).build();
+        return GetMeVO.builder().user(userService.exists(Authorization)).build();
     }
 
     @PutMapping(value = "/me")
@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void withdraw(@RequestHeader String authorization) {
-        userService.withdraw(authorization);
+    public void withdraw(@RequestHeader Integer id) {
+        userService.withdraw(id);
     }
 }

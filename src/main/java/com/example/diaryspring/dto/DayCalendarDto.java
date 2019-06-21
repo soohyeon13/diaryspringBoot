@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class DayCalendarDto {
-    DayCalendar dayCalendar;
+    private String title, eventLocation, event_Subject, eventDescription, eventStart;
     Integer user_id;
 }

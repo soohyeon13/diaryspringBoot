@@ -20,22 +20,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User join(String username, String userpassword) {
-        User user = new User();
-        if (user != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null)
             throw new AlreadyExistsException("Duplicate username");
-        }
         return userRepository.save(User.builder().username(username).userpassword(userpassword).build());
     }
 
     @Override
-    public boolean exists(String token) {
+    public User exists(String token) {
         try {
             User user = authentication(token);
-            if(user != null) return true;
+            if(user != null) return user;
         } catch (UnauthorizedException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -50,7 +49,6 @@ public class UserServiceImpl implements UserService {
                 String[] usernameAndPassword = decoded.split(":");
 
                 User user = userRepository.findByusernameAnduserpassword(usernameAndPassword[0], usernameAndPassword[1]);
-//                return userRepository.existsByusernameAnduserpassword(usernameAndPassword[0], usernameAndPassword[1]);
                 if (user == null) {
                     throw new UnauthorizedException("Invalid credentials");
                 } else {
@@ -74,9 +72,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void withdraw(String token) {
-        User user = this.authentication(token);
-        userRepository.delete(user);
+    public void withdraw(Integer id) {
+        userRepository.deleteById(id);
     }
 
     @Override

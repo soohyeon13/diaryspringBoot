@@ -8,13 +8,13 @@ import java.util.List;
 public interface UserService {
     User join(String username, String userpassword);
 
-    boolean exists(String token);
+    User exists(String token);
 
     User authentication(String token) throws UnauthorizedException;
 
     User updatepassword(String token,String password);
 
-    void withdraw(String token);
+    void withdraw(Integer id);
 
     List<User> userList();
 

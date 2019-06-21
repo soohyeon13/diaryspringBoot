@@ -32,8 +32,14 @@ public class DayCalendarServiceImpl implements DayCalendarService {
 
     @Override
     public DayCalendar addCalendar(DayCalendarDto dayCalendarDto) {
-        DayCalendar dayCalendar = dayCalendarDto.getDayCalendar();
-        dayCalendar.setUser(userService.findByid(dayCalendarDto.getUser_id()));
+        DayCalendar dayCalendar = DayCalendar.builder()
+                .title(dayCalendarDto.getTitle())
+                .event_Subject(dayCalendarDto.getEvent_Subject())
+                .eventDescription(dayCalendarDto.getEventDescription())
+                .eventLocation(dayCalendarDto.getEventLocation())
+                .eventStart(dayCalendarDto.getEventStart())
+                .user(userService.findByid(dayCalendarDto.getUser_id()))
+                .build();
         return dayCalendarRepo.save(dayCalendar);
     }
 
