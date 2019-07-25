@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class MemoCalendarDto {
-    MemoCalendar memoCalendar;
-    Integer memo_user_id;
+    private String memo_username,memo_date, memo_title, memo_location, memo_description;
+    Integer user_id;
 }

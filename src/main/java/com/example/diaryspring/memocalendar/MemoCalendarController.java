@@ -30,7 +30,7 @@ public class MemoCalendarController {
         return memoList;
     }
     @GetMapping(value = "{memo_user_id}")
-    public List<MemoCalendar> findAllByUserId(@PathVariable Integer memo_user_id) {
+    public List<MemoCalendar> findAllByUserId(@PathVariable Integer memo_user_id, @PathVariable String user_id) {
         List<MemoCalendar> memoCalendars = memoCalendarService.findAllByUserId(memo_user_id);
         return memoCalendars;
     }
